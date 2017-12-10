@@ -7,11 +7,9 @@ import math
 import neopixel
 import lsm303
 import time
+import random
 
-#Neopixel
-CLR_GRAY = (8, 8, 8,)
-LED_NUM = 600
-np_pin = machine.Pin(12)
+import led_mode
 
 #INS
 SCL_PIN = machine.Pin(33)
@@ -22,14 +20,29 @@ lsm = lsm303.LSM303D(i2c)
 print(i2c.scan())
 
 def main():
-  np = neopixel.NeoPixel(np_pin, LED_NUM, timing=1)
+  led = led_mode.LedMode(300)
+  led.knightrider(time.time()+10)
+  while True:
+    mode = random.randint(0, 5)
+    if(mode==0):
+      led.sinWaves(time.time()+120)
+    elif(mode==1):
+      led.randomColorBlock(time.time()+60)
+    elif(mode==2):
+      led.police(time.time()+30)
+    elif(mode==3):
+      led.randomColorNoise(time.time()+60)
+    elif(mode==4):
+      led.knightrider(time.time()+60)
+    elif(mode==5):
+      led.stroboscope(time.time()+10)
   while True:
     t_start = time.ticks_ms()
-    #for i in range(0, LED_NUM):
-    #  np[i] = CLR_GRAY
+    for i in range(0, LED_NUM):
+      np[i] = CLR_GRAY
     np.write()
     (acc_data, mag_data) = lsm.read()
-    time.sleep(1)
+    #time.sleep(1)
     a_x = acc_data[0]/1000
     a_y = acc_data[1]/1000
     a_z = acc_data[2]/1000

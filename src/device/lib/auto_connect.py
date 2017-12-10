@@ -5,7 +5,7 @@ except:
   print("Can't import urequests")
 
 #import auto_connect;auto_connect.auto_connect()
-cred = {"dd-wrt": "KockaLezeDirouPesOknem", "dobeso": "cestASila", "Lenovo P1ma40": "armada123"}
+cred = {"dd-wrt": "KockaLezeDirouPesOknem", "Lenovo P1ma40": "armada123"} #, "dobeso": "cestASila"
 
 def auto_connect():
   sta_if = network.WLAN(network.STA_IF)

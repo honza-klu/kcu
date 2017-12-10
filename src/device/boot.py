@@ -10,10 +10,10 @@ try:
   auto_connect.auto_connect()
   time.sleep(5)
   auto_connect.auto_connect()
-  if(auto_connect.con_test()):
-    print("WIFI OK")
-  else:
-    print("WIFI KO!")
+  #if(auto_connect.con_test()):
+  #  print("WIFI OK")
+  #else:
+#    print("WIFI KO!")
   
   def ftp_thread_entry(parm):
     print("STARTING FTP")
